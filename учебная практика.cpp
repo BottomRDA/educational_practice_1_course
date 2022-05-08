@@ -27,7 +27,7 @@ vector <long long> analis( vector <string> sorted_word)
         sorted_word[i][0] = tolower(sorted_word[i][0]);
     }
     //запись в массив количества встреченных букв
-    vector <long long> numbers(42);
+    vector <long long> numbers(43);
     for (int i = 0; i < sorted_word.size(); i++)
     {
         int j = alphabet(sorted_word[i][0]);
@@ -37,7 +37,7 @@ vector <long long> analis( vector <string> sorted_word)
     return numbers;
 }
 //Сортировка Шелла
-vector <string> sortShell(list <string> updated_line_word)
+vector <string> sort_shell(list <string> updated_line_word)
 {
     vector<string> sorted_word(updated_line_word.begin(), updated_line_word.end());
     int j;
@@ -115,7 +115,7 @@ list <string> division_into_words(string text)
 unsigned int time_sort(list <string> updated_line_word)
 {
     unsigned int start_time = clock();
-    sortShell(updated_line_word);
+    sort_shell(updated_line_word);
     unsigned int end_time = clock();
     return end_time - start_time;
 }
@@ -123,10 +123,12 @@ unsigned int time_sort(list <string> updated_line_word)
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    string text;
+    string text, fileName;
+    cout << "Введите путь файла: ";
+    cin >> fileName;
     //чтение из файла
     ifstream inText;
-    inText.open("Source\\text.txt");
+    inText.open(fileName);
     if (inText.is_open())
     {
         string temp;
@@ -147,7 +149,7 @@ int main()
 
     list <string> clear_line = clear_of_line(clear);
 
-    vector <string> sort = sortShell(clear_line);
+    vector <string> sort = sort_shell(clear_line);
 
     unsigned int time = time_sort(clear_line);
 
@@ -166,12 +168,17 @@ int main()
     //Вывод в файл
     ofstream analisText;          // поток для записи
     analisText.open("Source\\analisText.txt"); // окрываем файл для записи
+    analisText << text<<endl;
+    analisText <<"Задание."<< endl << "Вариант 22. Кириллица, по алфавиту, по возрастанию, учитывать числа, сортировка Шелла" << endl;
+    analisText << "Количество слов в тексте: " << sort.size()<< endl;
+    analisText << "Время сортировки: " << time << " миллисекунд"<< endl<< "Статистика (количество слов на каждую букву алфавита): \n";
+
     for (int i = 0; i < analisis.size(); i++)
     {
         analisText <<letters[i]<< " - " << analisis[i] << endl;
     }
     analisText.close();
     cout << "Программа успешно завершилась!";
-    cout << "Время сортировки: " << time << " миллисекунд";
+    
     return 0;
 }
