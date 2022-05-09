@@ -172,11 +172,21 @@ int main()
     analisText <<"Задание."<< endl << "Вариант 22. Кириллица, по алфавиту, по возрастанию, учитывать числа, сортировка Шелла" << endl;
     analisText << "Количество слов в тексте: " << sort.size()<< endl;
     analisText << "Время сортировки: " << time << " миллисекунд"<< endl<< "Статистика (количество слов на каждую букву алфавита): \n";
+     for (int i = 0; i < analisis.size(); i++)
+     {
+        analisText <<letters[i]<< " - " << analisis[i] << endl;
+     }
+     //Вывод в консоль
+    cout << text << endl;
+    cout << "Задание." << endl << "Вариант 22. Кириллица, по алфавиту, по возрастанию, учитывать числа, сортировка Шелла" << endl;
+    cout << "Количество слов в тексте: " << sort.size() << endl;
+    cout << "Время сортировки: " << time << " миллисекунд" << endl << "Статистика (количество слов на каждую букву алфавита): \n";
 
     for (int i = 0; i < analisis.size(); i++)
     {
-        analisText <<letters[i]<< " - " << analisis[i] << endl;
+        cout << letters[i] << " - " << analisis[i] << endl;
     }
+
     analisText.close();
     cout << "Программа успешно завершилась!";
     
